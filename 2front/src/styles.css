@@ -1,0 +1,359 @@
+/* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Main Layout */
+.app-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background-color: #282c34;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers the logo horizontally */
+  position: relative;       /* For absolutely positioning the close button */
+  padding: 10px;
+}
+
+/* Sidebar Logo */
+.sidebar-logo {
+  display: block;
+  margin: 0 auto;
+  background: none;          /* Remove any background from the image */
+  max-height: 60px;          /* Adjust as needed */
+}
+
+/* Close (X) Button for Mobile */
+.toggle-btn.close-btn {
+  position: absolute;
+  right: 10px;              /* Adjust horizontal position as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;          /* Adjust size as needed */
+  cursor: pointer;
+  display: none;            /* Hidden by default on desktop */
+}
+
+/* Sidebar Content (Buttons) */
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.sidebar-content button {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 15px;
+  margin: 5px 0;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-content button:hover {
+  background-color: #666;
+}
+
+/* Selected sidebar button with very high specificity */
+html body .app-container .sidebar .sidebar-content button.selected {
+  background-color: #4499d4 !important;
+}
+
+/* Chat Area */
+.chat-area {
+  flex-grow: 1;
+  width: calc(100% - 260px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 20px;
+  /* Desktop-specific extra bottom spacing */
+  padding-bottom: 40px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+/* Chat Header (Title and Clear Button) */
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  /* Make header width match the messages container */
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Clear Button styled like sidebar buttons */
+.clear-btn {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.clear-btn:hover {
+  background-color: #666;
+}
+
+/* Mobile open-sidebar button (Menu button) */
+.open-sidebar-btn {
+  display: none; /* Hidden on desktop */
+}
+
+/* New Container for Scrolling Messages */
+.messages-container {
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: calc(100vh - 180px);
+  margin-bottom: 20px;
+}
+
+/* Messages Inner Container (Centered) */
+.messages {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* No Messages State */
+.no-messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  color: #000;
+  padding: 0 40px; /* Provides a margin from the sides */
+}
+
+.no-messages-logo {
+  height: 180px; /* 3 times the sidebar logo (if sidebar logo max-height is 60px) */
+  width: auto;
+  margin-bottom: 20px;
+}
+
+.no-messages-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.no-messages-subtitle {
+  font-size: 16px;
+  color: grey;
+  margin-bottom: 10px;
+}
+
+.no-messages-description {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Suggestion Card */
+.suggestion-card {
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 15px;
+  border-radius: 10px;
+  width: 50%;             /* Make the card half the width of its container */
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.suggestion-card:hover {
+  background-color: #f7f7f7; /* Light highlight on hover */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Message Bubbles */
+/* User messages: updated to use #4499d4 */
+.user-msg {
+  background-color: #4499d4;
+  color: white;
+  padding: 12px;
+  border-radius: 20px;
+  margin: 10px 0;
+  text-align: right;
+  max-width: 80%;
+  align-self: flex-end;
+}
+
+/* Bot messages remain the same */
+.bot-msg {
+  background-color: #dddddd;
+  color: black;
+  padding: 12px;
+  border-radius: 20px;
+  margin: 10px 0;
+  text-align: left;
+  max-width: 80%;
+  align-self: flex-start;
+}
+
+/* Chat Input */
+.chat-input {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Desktop-specific Input Wrapper Spacing */
+.input-wrapper {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+/* Textarea styling */
+.chat-input textarea {
+  width: 100%;
+  padding: 12px 60px 12px 12px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  box-sizing: border-box;
+  resize: none;
+  overflow-y: auto;
+  line-height: 1.5;
+  /* Start with one line and allow expansion up to ~5 lines (144px max height) */
+  min-height: 40px;
+  max-height: 144px;
+}
+
+.send-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.send-btn:hover {
+  background-color: #218838;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .no-messages {
+    padding: 0 20px; /* Narrower container so text doesn't run edge-to-edge */
+  }
+  .no-messages-logo {
+    height: 120px;  /* Smaller logo for mobile */
+  }
+  .app-container {
+    flex-direction: column;
+  }
+  /* Sidebar adjustments for mobile */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    width: 60%;
+    z-index: 1000;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  /* Show close (X) button on mobile */
+  .toggle-btn.close-btn {
+    display: block;
+  }
+  /* Mobile open-sidebar button (Menu button) */
+  .open-sidebar-btn {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #4499d4; /* Use the new color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1001;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .chat-area {
+    width: 100%;
+    /* Reduced bottom padding for mobile */
+    padding-bottom: 10px;
+  }
+  /* Adjust header margin so it doesn't overlap with the open-sidebar button */
+  .chat-area h2 {
+    margin-left: 50px; /* Adjust this value as needed */
+  }
+  .input-wrapper,
+  .messages {
+    width: 90%;
+    /* Remove the extra bottom margin on mobile */
+    margin-bottom:    0;
+  }
+  /* Ensure clear button has a small margin from the right on mobile */
+  .chat-header .clear-btn {
+    margin-right: 10px;
+  }
+}
