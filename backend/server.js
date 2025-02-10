@@ -11,9 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Enable CORS for your front-end.
-const corsOptions = {
-  origin: "https://783e-212-47-144-142.ngrok-free.app",
-};
+// const corsOptions = {
+//   origin: "https://783e-212-47-144-142.ngrok-free.app",
+// };
 
 app.use(cors());
 app.use(express.json());
